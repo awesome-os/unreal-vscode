@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Setup Zig (for zig cc -fsyntax-only)
+        uses: mlugg/setup-zig@v2
+        with:
+          version: '0.14.1'
+
+      - name: Run Unreal Ghost test suite
+        run: node --test test/unreal-vscode.test.mts
