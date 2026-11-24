@@ -62,8 +62,11 @@ jobs:
           fi
 
       - name: Publish to Open VSX (when OVSX_PAT secret is configured)
-        if: ${{ secrets.OVSX_PAT != '' }}
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
         run: |
-          npm exec --yes -- ovsx publish "${{ steps.pkg.outputs.vsix }}" -p "$OVSX_PAT"
+          if [ -n "$OVSX_PAT" ]; then
+            npm exec --yes -- ovsx publish "${{ steps.pkg.outputs.vsix }}" -p "$OVSX_PAT"
+          else
+            echo "OVSX_PAT not configured; skipping Open VSX publish (GitHub Release .vsix is ready)."
+          fi
