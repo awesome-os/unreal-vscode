@@ -149,7 +149,7 @@ test('package.json defines valid Open VSX / VS Code unreal-ghost contributions',
     name: string;
     publisher: string;
     type: string;
-    engines: { vscode: string };
+    engines: { vscode: string; node: string };
     contributes: {
       commands: Array<{ command: string; title: string }>;
       taskDefinitions: Array<{ type: string }>;
@@ -159,7 +159,8 @@ test('package.json defines valid Open VSX / VS Code unreal-ghost contributions',
   assert.equal(pkg.name, 'unreal-ghost');
   assert.equal(pkg.publisher, 'awesome-os');
   assert.equal(pkg.type, 'module');
-  assert.equal(pkg.engines.vscode, '^1.95.0');
+  assert.equal(pkg.engines.vscode, '^1.85.0');
+  assert.equal(pkg.engines.node, '>=22.18.0');
 
   const commandIds = pkg.contributes.commands.map((c) => c.command);
   assert.deepEqual(commandIds, [

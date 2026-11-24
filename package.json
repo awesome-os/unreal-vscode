@@ -2,7 +2,7 @@
   "name": "unreal-ghost",
   "displayName": "Unreal Ghost — Zero-VS UE5 & B8G_ARENA_V1 Viewport",
   "description": "MIT Unreal Engine 5 extension for Awesome-OS Code - OSS & Eclipse Theia — zero-Visual-Studio UBT builds via b8g-ghost cas-v1 (.NET 11 + ghost-llvm + ghost-winsdk) + B8G_ARENA_V1 libunreal viewport bridge",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "awesome-os",
   "license": "MIT",
   "type": "module",
@@ -12,7 +12,8 @@
     "url": "https://github.com/awesome-os/unreal-vscode.git"
   },
   "engines": {
-    "vscode": "^1.95.0"
+    "vscode": "^1.85.0",
+    "node": ">=22.18.0"
   },
   "categories": [
     "Programming Languages",
