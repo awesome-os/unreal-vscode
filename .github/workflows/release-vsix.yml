@@ -22,6 +22,11 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Setup Zig (for b8g_unreal_bridge.h C11/C++20 syntax test)
+        uses: mlugg/setup-zig@v2
+        with:
+          version: '0.14.1'
+
       - name: Run test suite
         run: node --test test/*.test.mts
 
