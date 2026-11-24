@@ -2,6 +2,31 @@
 
 MIT Unreal Engine 5 extension for **Awesome-OS Code - OSS** & **Eclipse Theia** — zero-Visual-Studio `UnrealBuildTool` (UBT) builds powered by **`awesome-os/b8g-ghost @ cas-v1`** (`.NET 11` + `ghost-llvm` + `ghost-winsdk` + `ghost-ninja`) plus a 64-byte-aligned **`B8G_ARENA_V1`** `libunreal` viewport bridge.
 
+## Install & Usage
+
+### 1-Command `.vsix` Install (Awesome-OS Code - OSS / Eclipse Theia / VS Code)
+
+```powershell
+gh release download -R awesome-os/unreal-vscode --pattern "*.vsix" --dir "$HOME/.b8g/cas/extensions" --clobber
+```
+
+Or download the `.vsix` from [`Releases`](https://github.com/awesome-os/unreal-vscode/releases/latest) and run `code-oss --install-extension <file>.vsix` (or install from Open VSX once published).
+
+### Usage
+
+Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and run:
+
+- **Unreal Ghost: Hydrate Zero-VS Toolchain (cas-v1)** (`unrealGhost.hydrateToolchain`)
+- **Unreal Ghost: Build UE5 Project via UBT** (`unrealGhost.buildProject`)
+- **Unreal Ghost: Generate compile_commands.json (clangd)** (`unrealGhost.generateCompileCommands`)
+- **Unreal Ghost: Open B8G_ARENA_V1 libunreal Viewport** (`unrealGhost.openViewport`)
+
+Run tests locally (Node.js 22+):
+
+```powershell
+node --test test/*.test.mts
+```
+
 ## Zero-Visual-Studio UE5 Architecture
 
 Instead of installing a 30+ GB Visual Studio IDE or embedding UE5's legacy CEF3 web-browser monolith, `unreal-ghost` resolves every build and display prerequisite directly from the content-addressed [`awesome-os/b8g-ghost`](https://github.com/awesome-os/b8g-ghost) `cas-v1` release:
