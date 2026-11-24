@@ -63,3 +63,15 @@ node --test test/unreal-vscode.test.mts
 - This repository is **100% MIT-licensed** (`LICENSE`).
 - It ships **only** MIT-licensed TypeScript extension tooling, `b8g-ghost` CAS manifest resolution, and the MIT C/C++ `native/b8g_unreal_bridge.h` ABI header.
 - **Zero proprietary Unreal Engine 5 binaries, libraries, headers, or source files are included or redistributed.** Users supply their own Epic-licensed Unreal Engine 5 installation via `unrealGhost.engineRoot`.
+
+## Quick Install & Run (Windows / Linux / macOS)
+
+```powershell
+# Windows (PowerShell) — 1-line VSIX install into Code - OSS / VS Code
+gh release download -R awesome-os/unreal-vscode -p "*.vsix" -O "unreal-vscode.vsix" --clobber; code --install-extension "unreal-vscode.vsix"
+```
+
+```sh
+# Linux & macOS — 1-line VSIX install into Code - OSS / VS Code
+gh release download -R awesome-os/unreal-vscode -p "*.vsix" -O "unreal-vscode.vsix" --clobber && code --install-extension "unreal-vscode.vsix"
+```
