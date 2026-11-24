@@ -1,4 +1,4 @@
-name: Release VSIX (GitHub Releases + Open VSX)
+name: Release VSIX
 
 on:
   push:
@@ -14,64 +14,10 @@ permissions:
   contents: write
 
 jobs:
-  package-and-release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-
-      - name: Setup Zig (for b8g_unreal_bridge.h C11/C++20 syntax test)
-        uses: mlugg/setup-zig@v2
-        with:
-          version: '0.14.1'
-
-      - name: Run test suite
-        run: node --test test/*.test.mts
-
-      - name: Package .vsix
-        id: pkg
-        run: |
-          NAME=$(node -p "JSON.parse(require('fs').readFileSync('package.json','utf8')).name")
-          VER=$(node -p "JSON.parse(require('fs').readFileSync('package.json','utf8')).version")
-          TAG="${{ inputs.tag }}"
-          if [ -z "$TAG" ]; then
-            if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-              TAG="${GITHUB_REF#refs/tags/}"
-            else
-              TAG="v${VER}"
-            fi
-          fi
-          VSIX="${NAME}-${VER}.vsix"
-          npm exec --yes -- @vscode/vsce package --allow-missing-repository --no-dependencies --out "$VSIX"
-          sha256sum "$VSIX" > SHA256SUMS.txt
-          ls -lh "$VSIX" SHA256SUMS.txt
-          echo "vsix=$VSIX" >> "$GITHUB_OUTPUT"
-          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
-          echo "name=$NAME" >> "$GITHUB_OUTPUT"
-          echo "ver=$VER" >> "$GITHUB_OUTPUT"
-
-      - name: Attach .vsix to GitHub Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          TAG="${{ steps.pkg.outputs.tag }}"
-          VSIX="${{ steps.pkg.outputs.vsix }}"
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$VSIX" SHA256SUMS.txt --clobber
-          else
-            gh release create "$TAG" "$VSIX" SHA256SUMS.txt \
-              --title "${{ steps.pkg.outputs.name }} ${TAG}" \
-              --notes "Automated .vsix release for Awesome-OS Code - OSS, Eclipse Theia, and Open VSX."
-          fi
-
-      - name: Publish to Open VSX (when OVSX_PAT secret is configured)
-        env:
-          OVSX_PAT: ${{ secrets.OVSX_PAT }}
-        run: |
-          if [ -n "$OVSX_PAT" ]; then
-            npm exec --yes -- ovsx publish "${{ steps.pkg.outputs.vsix }}" -p "$OVSX_PAT"
-          else
-            echo "OVSX_PAT not configured; skipping Open VSX publish (GitHub Release .vsix is ready)."
-          fi
+  release:
+    uses: awesome-os/maintenance-workflows/.github/workflows/reusable-vsix-release.yml@main
+    with:
+      setup_zig: true
+      tag: ${{ inputs.tag }}
+    secrets:
+      OVSX_PAT: ${{ secrets.OVSX_PAT }}
