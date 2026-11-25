@@ -1,0 +1,40 @@
+{
+  "schema": "holo-compiler-lockfile-v1",
+  "abiMagic": "0x33564742",
+  "casLayout": "v11",
+  "repo": "awesome-os/unreal-vscode",
+  "targets": [
+    "win64",
+    "linux-x64",
+    "linux-arm64",
+    "macos-arm64",
+    "wasm32-wasi"
+  ],
+  "generatedAt": "2026-11-24T23:53:02.473Z",
+  "dependencies": [
+    {
+      "id": "awesome-os/unreal-vscode/SHA256SUMS.txt",
+      "kind": "object",
+      "version": "v0.2.0",
+      "target": "any",
+      "sha512": "6786cfd46c20d66e5f6f26b456271c8aeec3ee9ac2be4bb9de64d187887b9507607dbc2e1200b8c0135526b54a373d4a8dedbf8a192d7581ec8198cd12dc9760",
+      "size": 90,
+      "executable": false,
+      "blob": "v11/files/67/6786cfd46c20d66e5f6f26b456271c8aeec3ee9ac2be4bb9de64d187887b9507607dbc2e1200b8c0135526b54a373d4a8dedbf8a192d7581ec8198cd12dc9760",
+      "url": "https://github.com/awesome-os/unreal-vscode/releases/download/v0.2.0/SHA256SUMS.txt",
+      "dependencies": []
+    },
+    {
+      "id": "awesome-os/unreal-vscode/unreal-ghost-0.2.0.vsix",
+      "kind": "vsix",
+      "version": "v0.2.0",
+      "target": "any",
+      "sha512": "f9db8c2084816ff6d56f3b6b77a2c458eb6015702911b22ffab0eb3729995bfd0915b39228265a0160ab38097d7ac5c73bf2ee0b90f1e99601e22f69e8445a46",
+      "size": 39898,
+      "executable": false,
+      "blob": "v11/files/f9/f9db8c2084816ff6d56f3b6b77a2c458eb6015702911b22ffab0eb3729995bfd0915b39228265a0160ab38097d7ac5c73bf2ee0b90f1e99601e22f69e8445a46",
+      "url": "https://github.com/awesome-os/unreal-vscode/releases/download/v0.2.0/unreal-ghost-0.2.0.vsix",
+      "dependencies": []
+    }
+  ]
+}
