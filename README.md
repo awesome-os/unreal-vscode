@@ -66,12 +66,10 @@ node --test test/unreal-vscode.test.mts
 
 ## Quick Install & Run (Windows / Linux / macOS)
 
-```powershell
-# Windows (PowerShell) — 1-line VSIX install into Code - OSS / VS Code
-gh release download -R awesome-os/unreal-vscode -p "*.vsix" -O "unreal-vscode.vsix" --clobber; code --install-extension "unreal-vscode.vsix"
-```
-
 ```sh
-# Linux & macOS — 1-line VSIX install into Code - OSS / VS Code
-gh release download -R awesome-os/unreal-vscode -p "*.vsix" -O "unreal-vscode.vsix" --clobber && code --install-extension "unreal-vscode.vsix"
+# Install / hydrate from v11 CAS via holo-pm
+holo-pm install repository://github.com/awesome-os/unreal-vscode@main
+
+# Or project & run directly via holo-project (0-byte hardlink)
+holo-project "project://node/unreal-vscode?from=repository://github.com/awesome-os/unreal-vscode@main"
 ```
