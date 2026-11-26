@@ -1,3 +1,5 @@
+> [!NOTE] Consolidated into https://github.com/awesome-os/devtools
+
 # `awesome-os/unreal-vscode` (`unreal-ghost`)
 
 MIT Unreal Engine 5 extension for **Awesome-OS Code - OSS** & **Eclipse Theia** — zero-Visual-Studio `UnrealBuildTool` (UBT) builds powered by **`awesome-os/b8g-ghost @ cas-v1`** (`.NET 11` + `ghost-llvm` + `ghost-winsdk` + `ghost-ninja`) plus a 64-byte-aligned **`B8G_ARENA_V1`** `libunreal` viewport bridge.
